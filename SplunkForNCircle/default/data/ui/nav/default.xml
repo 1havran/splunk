@@ -1,0 +1,30 @@
+<nav>
+  <collection label="Vulnerability Status">
+    <view name="ncircle__vulnerability_status" default='true' />
+  </collection>
+
+  <collection label="Scan Detail">
+    <view name="ncircle__scan_detail"/>
+    <view name="ncircle__compare_scans"/>
+  </collection>
+
+  <collection label="Host Detail">
+    <view name="ncircle__host_detail"/>
+  </collection>
+  
+  <collection label="Vulnerability Detail">
+    <view name="ncircle__vulnerability_detail"/>
+  </collection>
+  
+  <collection label="Vulnerability Catalogue">
+    <view name="ncircle__vulnerability_catalogue"/>
+  </collection>
+  
+  <collection label="Auditing Dashboard">
+    <view name="ncircle__auditing_dashboard"/>
+  </collection>
+    
+  <collection label="Search">
+    <view name="search" />
+  </collection>
+</nav>

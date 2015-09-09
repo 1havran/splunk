@@ -1,0 +1,72 @@
+Splunk For nCircle - CONFIGURE
+-------------------------------------------------------------
+09/08/2015
+
+
+1. Referenced Architecture
+
+(a) Splunk Searchhead -- over tcp/8089 --> (b) Splunk indexer <-- over tcp/8089 -- (c) Splunk HeavyForwarder -- over tcp/22 --> (d) IP360 nCircle APIv2
+
+1.1. App Deployment
+(a) - enable app itself
+(b) - enable index for vulnerability data from nCircle
+(c) - enable inputs in the App
+
+
+2. Configuration
+
+2.1. nCircle Setup
+- configure user on nCircle IP360 appliance to get proper access rights to run APIv2 commands. 
+- connection is initiated by Splunk towards nCircle IP360 over tcp/22. Credentials are configured in the ncircle.conf file
+
+2.2. Data adjustment
+- data is being fetched according to unique identificators in the IP360 system.
+
+2.2.1. getAuditLog.py
+- get the latest counter for auditlog data from class.AuditLog via APIv2 
+	server.call(session, 'class.AuditLog', 'search', {'query':'id>0'})
+- choose reasonable ID and adjust variable called latest_counter in the script
+- Next ID will be stored in the counter_file. Adjust path of counter_file. By default it is located in $APP_HOME$/bin folder.
+
+2.2.2. getAuditDetails.py
+- get the relevant identificators of device profilers for fetching the audits from
+	server.call(session, 'class.DP', 'search', {'query':'id>0'})
+	server.call(session, 'DP.1', 'getAttributes', {})
+- store identificators of device profilers in variable called deviceProfilers
+- get the latest counter for audit data from class.Audit via APIv2
+	server.call(session, 'class.Audit', 'search', {'query':'id>0'})
+- choose reasonable ID and adjust variable called blg in the script
+- adjust path of audit_file. By default it is located in $APP_HOME$/bin folder.
+
+
+3. App Deployment
+
+3.1. Searchhead
+- copy the app into $SPLUNK_HOME/etc/apps
+- verify macros.conf file and ensure the proper splunk_server, index, sourcetype (see 3.3.) is used
+
+3.2. Indexer
+- copy the app into $SPLUNK_HOME/etc/apps
+- adjust and enable indexes.conf file
+
+3.3. Heavy Forwarder
+- copy the app into $SPLUNK_HOME/etc/apps
+- adjust and enable inputs.conf file
+- be aware that fields in sourcetype=_json is being automatically extracted by Splunk. If changed, all fields should be extracted. The sourcetype should be adjusted in the 3.1. step
+
+
+4. Troubleshooting
+- run the scripts manually:
+	/opt/splunk/bin/splunk cmd python /opt/splunk/etc/apps/SplunkForNCircle/bin/getAuditLog.py
+	/opt/splunk/bin/splunk cmd python /opt/splunk/etc/apps/SplunkForNCircle/bin/getAuditDetails.py
+- if it does not help, run python with debuger:
+	/opt/splunk/bin/splunk cmd python -m pdb /opt/splunk/etc/apps/SplunkForNCircle/bin/getAuditLog.py
+	/opt/splunk/bin/splunk cmd python -m pdb /opt/splunk/etc/apps/SplunkForNCircle/bin/getAuditDetails.py
+
+
+
+
+
+
+
+.
