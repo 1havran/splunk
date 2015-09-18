@@ -1,6 +1,6 @@
 Splunk For nCircle - CONFIGURE
 -------------------------------------------------------------
-09/08/2015
+09/18/2015
 
 
 1. Referenced Architecture
@@ -12,6 +12,8 @@ Splunk For nCircle - CONFIGURE
 (b) - enable index for vulnerability data from nCircle
 (c) - enable inputs in the App
 
+1.2. Dependencies
+- Python interpreter on Heavy Forwarder to run the scripts enabled in inputs.conf (https://www.python.org/downloads/)
 
 2. Configuration
 
@@ -21,6 +23,7 @@ Splunk For nCircle - CONFIGURE
 
 2.2. Data adjustment
 - data is being fetched according to unique identificators in the IP360 system.
+- run setup.py in bin folder to get proper variables for scripts below
 
 2.2.1. getAuditLog.py
 - get the latest counter for auditlog data from class.AuditLog via APIv2 

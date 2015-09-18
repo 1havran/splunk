@@ -20,6 +20,12 @@
     <view name="ncircle__vulnerability_catalogue"/>
   </collection>
   
+  <collection label="Scan Scheduling">
+    <view name="ncircle__active_scans"/>
+    <view name="ncircle__calendar_view"/>
+    <view name="ncircle__job_scheduled"/>
+  </collection>
+     
   <collection label="Auditing Dashboard">
     <view name="ncircle__auditing_dashboard"/>
   </collection>

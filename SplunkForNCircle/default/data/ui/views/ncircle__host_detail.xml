@@ -5,7 +5,7 @@
       <label>Choose host:</label>
       <search>
         <query>`vuln_search_detail` | fields hostDetail.ipAddress | dedup hostDetail.ipAddress | table hostDetail.ipAddress | sort hostDetail.ipAddress</query>
-        <earliest>-30d@d</earliest>
+        <earliest>-365d@d</earliest>
         <latest>now</latest>
       </search>
       <fieldForLabel>hostDetail.ipAddress</fieldForLabel>

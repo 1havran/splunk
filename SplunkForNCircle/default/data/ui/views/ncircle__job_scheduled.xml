@@ -1,0 +1,31 @@
+<form>
+  <label>nCircle - Scan Profiles</label>
+  <fieldset submitButton="false">
+    <input type="dropdown" token="tkProfile" searchWhenChanged="true">
+      <label>Select Profile Name:</label>
+      <search>
+        <query>earliest=-180d `vuln_splunk_server` `vuln_index` `vuln_sourcetype` source=*getActiveScans.py | fields scanProfile.name | dedup scanProfile.name | sort scanProfile.name</query>
+        <earliest>-180d</earliest>
+        <latest>now</latest>
+      </search>
+      <fieldForLabel>scanProfile.name</fieldForLabel>
+      <fieldForValue>scanProfile.name</fieldForValue>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <table>
+        <search>
+          <query>`vuln_splunk_server` `vuln_index` `vuln_sourcetype` source=*getActiveScans.py scanProfile.name="$tkProfile$" | rename scanProfile.profile.scanProfile.@timezone as timezone, scanProfile.profile.scanProfile.@type as type, scanProfile.profile.scanProfile.constraints.scanWindow.@start as start, scanProfile.profile.scanProfile.constraints.scanWindow.@end as end, scanProfile.profile.scanProfile.constraints.scanFrequency.byMonth.@daysOfMonth as DayOfMonth | table scanProfile.name, timezone, type, DayOfMonth, start, end, network.include, network.exclude | dedup scanProfile.name, timezone, type, DayOfMonth, start, end, network.include, network.exclude</query>
+          <earliest>-180d</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="wrap">true</option>
+        <option name="rowNumbers">false</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">cell</option>
+        <option name="count">10</option>
+      </table>
+    </panel>
+  </row>
+</form>

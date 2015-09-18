@@ -122,11 +122,10 @@
           <earliest>-30m@m</earliest>
           <latest>now</latest>
         </search>
-         <drilldown>
-          <link>/app/SplunkForNCircle/ncircle__host_detail?form.tkHost=$click.value$
-          </link>
+        <drilldown>
+          <link>/app/SplunkForNCircle/ncircle__host_detail?form.tkHost=$click.value$</link>
         </drilldown>
-        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
         <option name="charting.axisLabelsX.majorLabelStyle.rotation">-90</option>
         <option name="charting.axisTitleX.visibility">visible</option>
         <option name="charting.axisTitleY.visibility">visible</option>
@@ -159,9 +158,8 @@
           <earliest>-30d@d</earliest>
           <latest>now</latest>
         </search>
-         <drilldown>
-          <link>/app/SplunkForNCircle/ncircle__host_detail?form.tkHost=$row.hostDetail.ipAddress$
-          </link>
+        <drilldown>
+          <link>/app/SplunkForNCircle/ncircle__host_detail?form.tkHost=$row.hostDetail.ipAddress$</link>
         </drilldown>
         <option name="wrap">true</option>
         <option name="rowNumbers">false</option>
@@ -180,9 +178,8 @@
           <earliest>-30m@m</earliest>
           <latest>now</latest>
         </search>
-         <drilldown>
-          <link>/app/SplunkForNCircle/ncircle__vulnerability_detail?form.tkVuln=$row.VulnDetail.name$
-          </link>
+        <drilldown>
+          <link>/app/SplunkForNCircle/ncircle__vulnerability_detail?form.tkVuln=$row.VulnDetail.name$</link>
         </drilldown>
         <option name="wrap">true</option>
         <option name="rowNumbers">false</option>
@@ -197,11 +194,10 @@
       <table>
         <title>Hosts Vulnerabilities</title>
         <search>
-          <query> earliest=-30d `vuln_search_detail` audit=$tkAudit$ | eval vuln="Score: "+score+", "+'VulnDetail.name' | stats count by hostDetail.ipAddress,vuln | sort hostDetail.ipAddress, -vuln  | stats values(vuln) by hostDetail.ipAddress | sort hostDetail.ipAddress</query>
+          <query>earliest=-30d `vuln_search_detail` audit=$tkAudit$ | eval vuln="Score: "+score+", "+'VulnDetail.name' | stats count by hostDetail.ipAddress,vuln | sort hostDetail.ipAddress, -vuln  | stats values(vuln) by hostDetail.ipAddress | sort hostDetail.ipAddress</query>
         </search>
-         <drilldown>
-          <link>/app/SplunkForNCircle/ncircle__host_detail?form.tkHost=$row.hostDetail.ipAddress$
-          </link>
+        <drilldown>
+          <link>/app/SplunkForNCircle/ncircle__host_detail?form.tkHost=$row.hostDetail.ipAddress$</link>
         </drilldown>
         <option name="wrap">true</option>
         <option name="rowNumbers">false</option>

@@ -1,7 +1,7 @@
 Splunk For nCircle
 ----------------------------------------
         Author: Vladimir Had
-        Version/Date: 1.0.0/09-08-2015
+        Version/Date: 1.0.1/09-18-2015
         Has index-time operations: false
         Supported product(s):
                  * nCircle IP360 logs from APIv2
