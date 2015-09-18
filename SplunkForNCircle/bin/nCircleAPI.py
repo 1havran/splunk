@@ -16,7 +16,7 @@ def _printJson(output):
         i += 1
         if type(data) == unicode or type(data) == str:
             data = data.encode('ascii','ignore')
-        data = str(data).replace("\n+", ':')
+        data = str(data).replace("\n", ':')
         print "\"%s\": \"%s\"" % (name, data),
 	if i<len(output):
 		print ",",

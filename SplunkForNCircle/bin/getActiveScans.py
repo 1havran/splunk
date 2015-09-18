@@ -74,9 +74,7 @@ for key in getMergedConf(config_file).keys():
                 except xmlrpclib.ProtocolError, error:
                         print "xmlrpclib protocol error: %d %s" % (error.errcode, error.errmsg)
                         sys.exit(1)
-
-
-                nCircleAPI._putConfigFile(counter_file, jsonStruct)
+                
 
         except:
                 pass

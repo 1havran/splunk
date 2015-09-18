@@ -95,7 +95,10 @@ for key in getMergedConf(config_file).keys():
 								nCircleAPI._printJson(osDetail)
 								print "}",
 								print "}"
-
+								
+						# Store the latest Audit IDs for each device profiler
+						nCircleAPI._putConfigFile(audit_file, storedAuditIDs)
+						
 			# Logout from server
 			nCircleAPI._logout(server, session)
 			

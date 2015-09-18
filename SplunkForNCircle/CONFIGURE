@@ -38,6 +38,9 @@ Splunk For nCircle - CONFIGURE
 - choose reasonable ID and adjust variable called blg in the script
 - adjust path of audit_file. By default it is located in $APP_HOME$/bin folder.
 
+2.2.3. getActiveScans.py
+- get information about active scans (running or pending/scheduled)
+
 
 3. App Deployment
 
