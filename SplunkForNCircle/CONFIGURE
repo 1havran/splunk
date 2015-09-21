@@ -1,11 +1,11 @@
 Splunk For nCircle - CONFIGURE
 -------------------------------------------------------------
-09/18/2015
+09/21/2015
 
 
 1. Referenced Architecture
 
-(a) Splunk Searchhead -- over tcp/8089 --> (b) Splunk indexer <-- over tcp/8089 -- (c) Splunk HeavyForwarder -- over tcp/22 --> (d) IP360 nCircle APIv2
+(a) Splunk Searchhead -- over tcp/8089 --> (b) Splunk indexer <-- over tcp/8089 -- (c) Splunk HeavyForwarder -- over tcp/443 --> (d) IP360 nCircle APIv2
 
 1.1. App Deployment
 (a) - enable app itself
@@ -13,37 +13,23 @@ Splunk For nCircle - CONFIGURE
 (c) - enable inputs in the App
 
 1.2. Dependencies
+- Tripwire IP360 Version 6.9 and higher to support APIv2
 - Python interpreter on Heavy Forwarder to run the scripts enabled in inputs.conf (https://www.python.org/downloads/)
 
 2. Configuration
 
 2.1. nCircle Setup
 - configure user on nCircle IP360 appliance to get proper access rights to run APIv2 commands. 
-- connection is initiated by Splunk towards nCircle IP360 over tcp/22. Credentials are configured in the ncircle.conf file
+- connection is initiated by Splunk towards nCircle IP360 over tcp/443. Credentials are configured in the ncircle.conf file
 
 2.2. Data adjustment
 - data is being fetched according to unique identificators in the IP360 system.
 - run setup.py in bin folder to get proper variables for scripts below
-
-2.2.1. getAuditLog.py
-- get the latest counter for auditlog data from class.AuditLog via APIv2 
-	server.call(session, 'class.AuditLog', 'search', {'query':'id>0'})
-- choose reasonable ID and adjust variable called latest_counter in the script
-- Next ID will be stored in the counter_file. Adjust path of counter_file. By default it is located in $APP_HOME$/bin folder.
-
-2.2.2. getAuditDetails.py
-- get the relevant identificators of device profilers for fetching the audits from
-	server.call(session, 'class.DP', 'search', {'query':'id>0'})
-	server.call(session, 'DP.1', 'getAttributes', {})
-- store identificators of device profilers in variable called deviceProfilers
-- get the latest counter for audit data from class.Audit via APIv2
-	server.call(session, 'class.Audit', 'search', {'query':'id>0'})
-- choose reasonable ID and adjust variable called blg in the script
-- adjust path of audit_file. By default it is located in $APP_HOME$/bin folder.
-
-2.2.3. getActiveScans.py
-- get information about active scans (running or pending/scheduled)
-
+- setup.py will output:
+* valid ncircle.conf file
+* min ID and max ID for getAuditLog.py. Choose reasonable ID and adjust variable called latest_counter in the script located in $APP_HOME$/bin folder
+* min ID and max ID for getAuditDetails.py. Choose reasonable ID and adjust variable called blg in the script located in $APP_HOME$/bin folder
+* list of device profilers to adjust variable deviceProfilers in getAuditDetails.py and getActiveScans.py
 
 3. App Deployment
 
