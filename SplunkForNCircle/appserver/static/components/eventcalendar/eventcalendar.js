@@ -62,7 +62,7 @@ define(function(require, exports, module) {
                 var event = {
                     "title" : data[i][valueField],
                     "start" : data[i][dateField],
-                    "url" : linkUrl + "?form." + destFormField + "=" + title
+                    "url" : linkUrl + "?form." + destFormField + "=" + data[i][valueField].toString()
                 }
                 
                 eventcalendar.events.push(event);
