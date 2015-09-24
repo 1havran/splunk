@@ -1,4 +1,4 @@
-id,description
+auditComponent,Description
 1,User
 2,Status
 7,Network
@@ -40,3 +40,27 @@ id,description
 57,Load Packages from CD
 58,Load Packages from Upstream
 59,Install Queued Packages
+60,Password Policy
+61,Upstream Repository
+62,Standby Settings
+63,Audit Cancel
+64,Custom Vuln Application
+65,Broadcast Message
+66,User Group
+67,User Access Rights
+68,Role Access Rights
+69,Scan Profile
+70,Scan Configuration
+71,Network Group
+72,Host Information Survey
+73,Audit Resume
+74,Audit Pause
+75,Host Tracking Re-Initialize
+76,Host Tracking Correlation
+77,IDS/IPS Sensor
+78,IDS/IPS nTellect
+79,User Auditing Start
+80,User Auditing Stop
+81,Failed Login
+82,Report Viewing
+83,Scan Alerts
