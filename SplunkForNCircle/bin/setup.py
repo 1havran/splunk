@@ -45,7 +45,7 @@ try:
 	
 	results = server.call(session, 'class.DP', 'search', {'query':'id>0'})
 	if results:				
-		print 'getAuditDetails.py: device profiler setup'
+		print 'Device profiler setup'
 		for deviceProfiler in results:
 			deviceProfilerDetail = nCircleAPI._getItem(server, session, dpList, deviceProfiler)
 			
@@ -56,7 +56,7 @@ try:
 			if toInclude is "y" :
 				dpDict.append(deviceProfiler)
 			print ""
-		print 'getAuditDetails.py: update variable called deviceProfilers by this string'
+		print 'getActiveScans.py, getAuditDetails.py, getDpStats.py: update variable called deviceProfilers by this string'
 		print dpDict
 		print
 	
