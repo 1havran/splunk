@@ -20,7 +20,7 @@
 					"managerid": "calSearch",                     
 					"valueField": "network.name",                     
 					"dateField": "day",                    
-					"destFormField": "tkProfile",
+					"destFormField": "tkNetworkName",
 					"linkUrl": "ncircle__job_scheduled"                   
 				}'>
             </div>

@@ -11,6 +11,7 @@
       <fieldForLabel>scanProfile.name</fieldForLabel>
       <fieldForValue>scanProfile.name</fieldForValue>
       <choice value="*">ALL</choice>
+      <default>*</default>
     </input>
     <input type="text" token="tkNetworkName">
       <label>Search in network.name:</label>
