@@ -7,7 +7,7 @@
 				class="splunk-manager" 
 				data-require="splunkjs/mvc/searchmanager" 
 				data-options='{                     
-					"search": "earliest=-180d latest=now `vuln_index` `vuln_splunk_server` `vuln_sourcetype` source=*getActiveScans.py | rename scanProfile.profile.scanProfile.constraints.scanFrequency.byMonth.@daysOfMonth as day | dedup scanProfile.name, day, timestamp | eval y=strftime(timestamp, \"%Y\") | eval m=strftime(timestamp, \"%m\") | eval day = m + \"/\" + day  + \"/\" + y | stats count by day, scanProfile.name",
+					"search": "earliest=-180d latest=now `vuln_index` `vuln_splunk_server` `vuln_sourcetype` source=*getActiveScans.py | rename scanProfile.profile.scanProfile.constraints.scanFrequency.byMonth.@daysOfMonth as day | dedup scanProfile.name, day, timestamp | eval y=strftime(timestamp, \"%Y\") | eval m=strftime(timestamp, \"%m\") | eval day = m + \"/\" + day  + \"/\" + y | dedup day, scanProfile.name | table day, network.name",
 					"cancelOnUnload": true,                     
 					"preview": true                  
 				}'>
@@ -18,7 +18,7 @@
 				data-require="app/SplunkForNCircle/components/eventcalendar/eventcalendar" 
 				data-options='{                     
 					"managerid": "calSearch",                     
-					"valueField": "scanProfile.name",                     
+					"valueField": "network.name",                     
 					"dateField": "day",                    
 					"destFormField": "tkProfile",
 					"linkUrl": "ncircle__job_scheduled"                   
